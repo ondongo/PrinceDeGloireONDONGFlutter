@@ -1,0 +1,4 @@
+[
+  { "skillName": "Php", "completion": 10, "color": "red" },
+  { "skillName": "Java", "completion": 20, "color": "blue" }
+]
