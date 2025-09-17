@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mon_premier_projet/models/Album.dart';
 import 'package:mon_premier_projet/widgets/customDrawer.dart';
-import 'package:mon_premier_projet/widgets/skill.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:image_network/image_network.dart';
 
 class MyAboutPage extends StatefulWidget {
   const MyAboutPage({super.key, required this.title});
@@ -48,17 +51,19 @@ class _MyMyAboutPageState extends State<MyAboutPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              FutureBuilder<String>(
+              FutureBuilder<Album?>(
                 future: _getAlbum(),
                 builder:
-                    (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    (BuildContext context, AsyncSnapshot<Album?> snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return CircularProgressIndicator();
                       }
-                      if (snapshot.hasData) {
+                      if (snapshot.hasData && snapshot.data != null) {
                         return Column(
                           children: [
-                            Text(snapshot.data ?? ""),
+                            Text(snapshot.data!.albumId.toString()),
+                            Text(snapshot.data!.title),
+
                             SizedBox(height: 20),
                             // Add button route to the About page
                             ElevatedButton(
@@ -81,8 +86,29 @@ class _MyMyAboutPageState extends State<MyAboutPage> {
     );
   }
 
-  Future<String> _getAlbum() async {
-    await Future.delayed(Duration(seconds: 2));
-    return 'Album';
+  Future<Album?> _getAlbum() async {
+    var url = Uri.https('jsonplaceholder.typicode.com', '/photos/2');
+
+    // Await the http get response, then decode the json-formatted response.
+    var response = await http.get(
+      url,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    );
+
+    print(jsonDecode(response.body));
+    if (response.statusCode == 200) {
+      /*  var jsonResponse =
+          convert.jsonDecode(response.body) as Map<String, dynamic>; */
+      //var itemCount = jsonResponse['totalItems'];
+      Album album = Album.fromJson(jsonDecode(response.body));
+
+      return album;
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+      return null;
+    }
   }
 }

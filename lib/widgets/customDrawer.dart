@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mon_premier_projet/screens/about_page.dart';
+import 'package:mon_premier_projet/screens/form_page.dart';
 import 'package:mon_premier_projet/screens/home_page.dart';
+import 'package:mon_premier_projet/screens/movies/movie_page.dart';
 
 class MyDrawer extends StatelessWidget {
   final String currentPage;
@@ -61,6 +63,48 @@ class MyDrawer extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (BuildContext context) =>
                       MyAboutPage(title: 'About'),
+                ),
+              );
+            },
+          ),
+
+          ListTile(
+            title: Text(
+              "Formulaire",
+              style: currentPage == "Formulaire"
+                  ? TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepPurple,
+                    )
+                  : TextStyle(fontWeight: FontWeight.normal),
+            ),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () {
+              if (this.currentPage == "Formulaire") return;
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      MyFormPage(title: 'Formulaire'),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: Text(
+              "Films",
+              style: currentPage == "Films"
+                  ? TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepPurple,
+                    )
+                  : TextStyle(fontWeight: FontWeight.normal),
+            ),
+            trailing: Icon(Icons.movie),
+            onTap: () {
+              if (this.currentPage == "Films") return;
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const MoviePage(),
                 ),
               );
             },

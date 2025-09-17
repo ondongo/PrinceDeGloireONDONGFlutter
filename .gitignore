@@ -75,3 +75,17 @@ app.*.map.json
 /linux/Flutter/ephemeral/flutter_assets/kernel_blob.bin.dSYM.zip.dSYM
 /linux/Flutter/ephemeral/flutter_assets/kernel_blob.bin.dSYM.zip.dSYM.zip
 /linux/Flutter/ephemeral/flutter_assets/kernel_blob.bin.dSYM.zip.dSYM.zip.dSYM
+
+
+
+.env
+env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.development
+.env.test
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
