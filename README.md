@@ -1,16 +1,27 @@
 # Prince De Gloire ONDONGO FLutter 
 
-A new Flutter project.
+Installation
+1. Cloner le projet
+git clone https://github.com/ton-utilisateur/ton-projet-flutter.git
+cd ton-projet-flutter
 
-## Getting Started
+2. Installer les dépendances
+flutter pub get
 
-This project is a starting point for a Flutter application.
+3. Configurer l’API TMDb
 
-A few resources to get you started if this is your first Flutter project:
+L’application utilise The Movie Database (TMDb) pour récupérer les informations des films.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Crée un compte sur TMDb
+.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Va dans Paramètres > API et récupère ton API Key (clé publique).
+
+Génére un Access Token (v4 auth) pour certaines requêtes avancées.
+
+4. Ajouter tes clés d’API
+
+Crée un fichier .env (ou utilise directement lib/core/constants/api_constants.dart selon ton projet) et ajoute :
+
+API_KEY=ta_clef_api
+TOKEN=ton_token_v4
