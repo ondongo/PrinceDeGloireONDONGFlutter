@@ -6,18 +6,9 @@ Future<Database> db() async {
     join(await getDatabasesPath(), 'test_database.db'),
     onCreate: (db, version) async {
       await db.execute(
-        'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, lastName TEXT, firstName TEXT)',
+        'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, lastName TEXT, age INTEGER)',
       );
     },
-    onUpgrade: (db, oldVersion, newVersion) async {
-      if (oldVersion == 1 && newVersion == 2) {
-        return db.execute(
-          'ALTER TABLE users'
-          'RENAME COLUMN firstName TO firstName',
-        );
-      }
-    },
-
-    version: 2,
+    version: 1,
   );
 }

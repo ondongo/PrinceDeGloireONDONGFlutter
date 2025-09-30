@@ -3,6 +3,7 @@ import 'package:mon_premier_projet/screens/about_page.dart';
 import 'package:mon_premier_projet/screens/form_page.dart';
 import 'package:mon_premier_projet/screens/home_page.dart';
 import 'package:mon_premier_projet/screens/movies/movie_page.dart';
+import 'package:mon_premier_projet/screens/user_list_age.dart';
 
 class MyDrawer extends StatelessWidget {
   final String currentPage;
@@ -25,6 +26,26 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          ListTile(
+            title: Text(
+              "Users",
+              style: currentPage == "Users"
+                  ? TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepPurple,
+                    )
+                  : TextStyle(fontWeight: FontWeight.normal),
+            ),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () {
+              if (this.currentPage == "Users") return;
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => UserListPage(),
+                ),
+              );
+            },
           ),
           ListTile(
             title: Text(
